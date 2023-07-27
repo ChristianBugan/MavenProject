@@ -12,7 +12,7 @@ public class TestDB {
 
 	public static void main(String[] args) {
 	
-		//Obietc de tip DB connection, care deschide o conexiune la 
+		//Obiect de tip DB connection, care deschide o conexiune la 
 		//baza de date bazata pe credentialele de mai sus
 		Connection conn = DbConnection.openDbConnection(URL, USER, PASS);
 		
@@ -23,9 +23,21 @@ public class TestDB {
 		// executa query-ul pe conexiunea primita
 		System.out.println(DBQuerys.dbSelectQuery(conn, selectQuery));
 		
+		
+		String updateQuery = "update customers set CustomerName = 'TestX' where CustomerName = 'TestDragos12';";
+		DBQuerys.dbUpdateQuery(conn, updateQuery);
+		System.out.println(DBQuerys.dbSelectQuery(conn, selectQuery));
+		
+		
+		String deleteQuery = "delete from customers where CustomerName = 'TestX'";
+		DBQuerys.dbDeleteQuery(conn, deleteQuery);
+		System.out.println(DBQuerys.dbSelectQuery(conn, selectQuery));
+		
+		
 		//inchidem obiectul de tip connection
 		DbConnection.closeDbConnection(conn);
 
 	}
 
 }
+
